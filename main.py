@@ -81,7 +81,7 @@ en = d1[en_list[0]]
 if en_list[1] == "i":
     en += n
 
-# Method of checking whether a node is ancestor of another node
+# Method of checking whether a node is grand-child of another node
 def is_grand_child(start_node, end_node, list):
     class NodeQueue:
         def __init__(self, nodeId):
