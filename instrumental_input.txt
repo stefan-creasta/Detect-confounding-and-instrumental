@@ -1,0 +1,13 @@
+4
+Z T Y U
+0
+0
+4
+Z T
+T Y
+U T
+U Y
+0
+
+T_j
+Y_i

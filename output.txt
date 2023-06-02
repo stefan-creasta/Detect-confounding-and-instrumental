@@ -1,0 +1,40 @@
+X-T X-Y T-Y U-T U-Y U-X False
+X-T X-Y T-Y U-T U-Y False
+X-T X-Y X-U T-Y U-T U-Y False
+X-T X-Y T-Y U-T U-X True
+X-T X-Y T-Y U-T True
+X-T X-Y X-U T-Y U-T True
+X-T X-Y T-Y U-Y U-X True
+X-T X-Y T-Y U-Y True
+X-T X-Y X-U T-Y U-Y True
+X-T X-Y T-Y U-X True
+X-T X-Y T-Y True
+X-T X-Y X-U T-Y True
+X-T X-Y Y-U T-Y True
+X-T X-Y X-U Y-U T-Y True
+X-T X-Y T-Y T-U U-Y True
+X-T X-Y X-U T-Y T-U U-Y True
+X-T X-Y T-Y T-U True
+X-T X-Y X-U T-Y T-U True
+X-T X-Y Y-U T-Y T-U True
+X-T X-Y X-U Y-U T-Y T-U True
+X-T X-Y U-T U-Y U-X False
+X-T X-Y U-T U-Y False
+X-T X-Y X-U U-T U-Y False
+X-T X-Y U-T U-X True
+X-T X-Y U-T True
+X-T X-Y X-U U-T True
+X-T X-Y U-Y U-X True
+X-T X-Y U-Y True
+X-T X-Y X-U U-Y True
+X-T X-Y U-X True
+X-T X-Y True
+X-T X-Y X-U True
+X-T X-Y Y-U True
+X-T X-Y X-U Y-U True
+X-T X-Y T-U U-Y True
+X-T X-Y X-U T-U U-Y True
+X-T X-Y T-U True
+X-T X-Y X-U T-U True
+X-T X-Y Y-U T-U True
+X-T X-Y X-U Y-U T-U True
