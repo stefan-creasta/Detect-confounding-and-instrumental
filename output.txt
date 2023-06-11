@@ -1,40 +1,320 @@
-X-T X-Y T-Y U-T U-Y U-X False
-X-T X-Y T-Y U-T U-Y False
-X-T X-Y X-U T-Y U-T U-Y False
-X-T X-Y T-Y U-T U-X True
-X-T X-Y T-Y U-T True
-X-T X-Y X-U T-Y U-T True
-X-T X-Y T-Y U-Y U-X True
-X-T X-Y T-Y U-Y True
-X-T X-Y X-U T-Y U-Y True
-X-T X-Y T-Y U-X True
-X-T X-Y T-Y True
-X-T X-Y X-U T-Y True
-X-T X-Y Y-U T-Y True
-X-T X-Y X-U Y-U T-Y True
-X-T X-Y T-Y T-U U-Y True
-X-T X-Y X-U T-Y T-U U-Y True
-X-T X-Y T-Y T-U True
-X-T X-Y X-U T-Y T-U True
-X-T X-Y Y-U T-Y T-U True
-X-T X-Y X-U Y-U T-Y T-U True
-X-T X-Y U-T U-Y U-X False
-X-T X-Y U-T U-Y False
-X-T X-Y X-U U-T U-Y False
-X-T X-Y U-T U-X True
-X-T X-Y U-T True
-X-T X-Y X-U U-T True
-X-T X-Y U-Y U-X True
-X-T X-Y U-Y True
-X-T X-Y X-U U-Y True
-X-T X-Y U-X True
-X-T X-Y True
-X-T X-Y X-U True
-X-T X-Y Y-U True
-X-T X-Y X-U Y-U True
-X-T X-Y T-U U-Y True
-X-T X-Y X-U T-U U-Y True
-X-T X-Y T-U True
-X-T X-Y X-U T-U True
-X-T X-Y Y-U T-U True
-X-T X-Y X-U Y-U T-U True
+||| X-T X-Y T-Y U-T U-Y U-X False
+X_j ||| X-T X-Y T-Y U-T U-Y U-X False
+T_i ||| X-T X-Y T-Y U-T U-Y U-X False
+T_i X_j ||| X-T X-Y T-Y U-T U-Y U-X False
+X_i ||| X-T X-Y T-Y U-T U-Y U-X False
+X_i X_j ||| X-T X-Y T-Y U-T U-Y U-X False
+X_i T_i ||| X-T X-Y T-Y U-T U-Y U-X False
+X_i T_i X_j ||| X-T X-Y T-Y U-T U-Y U-X False
+||| X-T X-Y T-Y U-T U-Y False
+X_j ||| X-T X-Y T-Y U-T U-Y False
+T_i ||| X-T X-Y T-Y U-T U-Y False
+T_i X_j ||| X-T X-Y T-Y U-T U-Y False
+X_i ||| X-T X-Y T-Y U-T U-Y False
+X_i X_j ||| X-T X-Y T-Y U-T U-Y False
+X_i T_i ||| X-T X-Y T-Y U-T U-Y False
+X_i T_i X_j ||| X-T X-Y T-Y U-T U-Y False
+||| X-T X-Y X-U T-Y U-T U-Y False
+X_j ||| X-T X-Y X-U T-Y U-T U-Y False
+T_i ||| X-T X-Y X-U T-Y U-T U-Y False
+T_i X_j ||| X-T X-Y X-U T-Y U-T U-Y False
+X_i ||| X-T X-Y X-U T-Y U-T U-Y False
+X_i X_j ||| X-T X-Y X-U T-Y U-T U-Y False
+X_i T_i ||| X-T X-Y X-U T-Y U-T U-Y False
+X_i T_i X_j ||| X-T X-Y X-U T-Y U-T U-Y False
+||| X-T X-Y T-Y U-T U-X False
+X_j ||| X-T X-Y T-Y U-T U-X False
+T_i ||| X-T X-Y T-Y U-T U-X False
+T_i X_j ||| X-T X-Y T-Y U-T U-X False
+X_i ||| X-T X-Y T-Y U-T U-X False
+X_i X_j ||| X-T X-Y T-Y U-T U-X False
+X_i T_i ||| X-T X-Y T-Y U-T U-X True
+X_i T_i X_j ||| X-T X-Y T-Y U-T U-X True
+||| X-T X-Y T-Y U-T False
+X_j ||| X-T X-Y T-Y U-T False
+T_i ||| X-T X-Y T-Y U-T False
+T_i X_j ||| X-T X-Y T-Y U-T False
+X_i ||| X-T X-Y T-Y U-T False
+X_i X_j ||| X-T X-Y T-Y U-T False
+X_i T_i ||| X-T X-Y T-Y U-T True
+X_i T_i X_j ||| X-T X-Y T-Y U-T True
+||| X-T X-Y X-U T-Y U-T False
+X_j ||| X-T X-Y X-U T-Y U-T False
+T_i ||| X-T X-Y X-U T-Y U-T False
+T_i X_j ||| X-T X-Y X-U T-Y U-T False
+X_i ||| X-T X-Y X-U T-Y U-T False
+X_i X_j ||| X-T X-Y X-U T-Y U-T False
+X_i T_i ||| X-T X-Y X-U T-Y U-T True
+X_i T_i X_j ||| X-T X-Y X-U T-Y U-T True
+||| X-T X-Y T-Y U-Y U-X False
+X_j ||| X-T X-Y T-Y U-Y U-X False
+T_i ||| X-T X-Y T-Y U-Y U-X False
+T_i X_j ||| X-T X-Y T-Y U-Y U-X False
+X_i ||| X-T X-Y T-Y U-Y U-X False
+X_i X_j ||| X-T X-Y T-Y U-Y U-X False
+X_i T_i ||| X-T X-Y T-Y U-Y U-X False
+X_i T_i X_j ||| X-T X-Y T-Y U-Y U-X True
+||| X-T X-Y T-Y U-Y False
+X_j ||| X-T X-Y T-Y U-Y False
+T_i ||| X-T X-Y T-Y U-Y False
+T_i X_j ||| X-T X-Y T-Y U-Y False
+X_i ||| X-T X-Y T-Y U-Y False
+X_i X_j ||| X-T X-Y T-Y U-Y False
+X_i T_i ||| X-T X-Y T-Y U-Y True
+X_i T_i X_j ||| X-T X-Y T-Y U-Y True
+||| X-T X-Y X-U T-Y U-Y False
+X_j ||| X-T X-Y X-U T-Y U-Y False
+T_i ||| X-T X-Y X-U T-Y U-Y False
+T_i X_j ||| X-T X-Y X-U T-Y U-Y False
+X_i ||| X-T X-Y X-U T-Y U-Y False
+X_i X_j ||| X-T X-Y X-U T-Y U-Y False
+X_i T_i ||| X-T X-Y X-U T-Y U-Y True
+X_i T_i X_j ||| X-T X-Y X-U T-Y U-Y True
+||| X-T X-Y T-Y U-X False
+X_j ||| X-T X-Y T-Y U-X False
+T_i ||| X-T X-Y T-Y U-X False
+T_i X_j ||| X-T X-Y T-Y U-X False
+X_i ||| X-T X-Y T-Y U-X False
+X_i X_j ||| X-T X-Y T-Y U-X False
+X_i T_i ||| X-T X-Y T-Y U-X True
+X_i T_i X_j ||| X-T X-Y T-Y U-X True
+||| X-T X-Y T-Y False
+X_j ||| X-T X-Y T-Y False
+T_i ||| X-T X-Y T-Y False
+T_i X_j ||| X-T X-Y T-Y False
+X_i ||| X-T X-Y T-Y False
+X_i X_j ||| X-T X-Y T-Y False
+X_i T_i ||| X-T X-Y T-Y True
+X_i T_i X_j ||| X-T X-Y T-Y True
+||| X-T X-Y X-U T-Y False
+X_j ||| X-T X-Y X-U T-Y False
+T_i ||| X-T X-Y X-U T-Y False
+T_i X_j ||| X-T X-Y X-U T-Y False
+X_i ||| X-T X-Y X-U T-Y False
+X_i X_j ||| X-T X-Y X-U T-Y False
+X_i T_i ||| X-T X-Y X-U T-Y True
+X_i T_i X_j ||| X-T X-Y X-U T-Y True
+||| X-T X-Y Y-U T-Y False
+X_j ||| X-T X-Y Y-U T-Y False
+T_i ||| X-T X-Y Y-U T-Y False
+T_i X_j ||| X-T X-Y Y-U T-Y False
+X_i ||| X-T X-Y Y-U T-Y False
+X_i X_j ||| X-T X-Y Y-U T-Y False
+X_i T_i ||| X-T X-Y Y-U T-Y True
+X_i T_i X_j ||| X-T X-Y Y-U T-Y True
+||| X-T X-Y X-U Y-U T-Y False
+X_j ||| X-T X-Y X-U Y-U T-Y False
+T_i ||| X-T X-Y X-U Y-U T-Y False
+T_i X_j ||| X-T X-Y X-U Y-U T-Y False
+X_i ||| X-T X-Y X-U Y-U T-Y False
+X_i X_j ||| X-T X-Y X-U Y-U T-Y False
+X_i T_i ||| X-T X-Y X-U Y-U T-Y True
+X_i T_i X_j ||| X-T X-Y X-U Y-U T-Y True
+||| X-T X-Y T-Y T-U U-Y False
+X_j ||| X-T X-Y T-Y T-U U-Y False
+T_i ||| X-T X-Y T-Y T-U U-Y False
+T_i X_j ||| X-T X-Y T-Y T-U U-Y False
+X_i ||| X-T X-Y T-Y T-U U-Y False
+X_i X_j ||| X-T X-Y T-Y T-U U-Y False
+X_i T_i ||| X-T X-Y T-Y T-U U-Y True
+X_i T_i X_j ||| X-T X-Y T-Y T-U U-Y True
+||| X-T X-Y X-U T-Y T-U U-Y False
+X_j ||| X-T X-Y X-U T-Y T-U U-Y False
+T_i ||| X-T X-Y X-U T-Y T-U U-Y False
+T_i X_j ||| X-T X-Y X-U T-Y T-U U-Y False
+X_i ||| X-T X-Y X-U T-Y T-U U-Y False
+X_i X_j ||| X-T X-Y X-U T-Y T-U U-Y False
+X_i T_i ||| X-T X-Y X-U T-Y T-U U-Y True
+X_i T_i X_j ||| X-T X-Y X-U T-Y T-U U-Y True
+||| X-T X-Y T-Y T-U False
+X_j ||| X-T X-Y T-Y T-U False
+T_i ||| X-T X-Y T-Y T-U False
+T_i X_j ||| X-T X-Y T-Y T-U False
+X_i ||| X-T X-Y T-Y T-U False
+X_i X_j ||| X-T X-Y T-Y T-U False
+X_i T_i ||| X-T X-Y T-Y T-U True
+X_i T_i X_j ||| X-T X-Y T-Y T-U True
+||| X-T X-Y X-U T-Y T-U False
+X_j ||| X-T X-Y X-U T-Y T-U False
+T_i ||| X-T X-Y X-U T-Y T-U False
+T_i X_j ||| X-T X-Y X-U T-Y T-U False
+X_i ||| X-T X-Y X-U T-Y T-U False
+X_i X_j ||| X-T X-Y X-U T-Y T-U False
+X_i T_i ||| X-T X-Y X-U T-Y T-U True
+X_i T_i X_j ||| X-T X-Y X-U T-Y T-U True
+||| X-T X-Y Y-U T-Y T-U False
+X_j ||| X-T X-Y Y-U T-Y T-U False
+T_i ||| X-T X-Y Y-U T-Y T-U False
+T_i X_j ||| X-T X-Y Y-U T-Y T-U False
+X_i ||| X-T X-Y Y-U T-Y T-U False
+X_i X_j ||| X-T X-Y Y-U T-Y T-U False
+X_i T_i ||| X-T X-Y Y-U T-Y T-U True
+X_i T_i X_j ||| X-T X-Y Y-U T-Y T-U True
+||| X-T X-Y X-U Y-U T-Y T-U False
+X_j ||| X-T X-Y X-U Y-U T-Y T-U False
+T_i ||| X-T X-Y X-U Y-U T-Y T-U False
+T_i X_j ||| X-T X-Y X-U Y-U T-Y T-U False
+X_i ||| X-T X-Y X-U Y-U T-Y T-U False
+X_i X_j ||| X-T X-Y X-U Y-U T-Y T-U False
+X_i T_i ||| X-T X-Y X-U Y-U T-Y T-U True
+X_i T_i X_j ||| X-T X-Y X-U Y-U T-Y T-U True
+||| X-T X-Y U-T U-Y U-X False
+X_j ||| X-T X-Y U-T U-Y U-X False
+T_i ||| X-T X-Y U-T U-Y U-X False
+T_i X_j ||| X-T X-Y U-T U-Y U-X False
+X_i ||| X-T X-Y U-T U-Y U-X False
+X_i X_j ||| X-T X-Y U-T U-Y U-X False
+X_i T_i ||| X-T X-Y U-T U-Y U-X False
+X_i T_i X_j ||| X-T X-Y U-T U-Y U-X False
+||| X-T X-Y U-T U-Y False
+X_j ||| X-T X-Y U-T U-Y False
+T_i ||| X-T X-Y U-T U-Y False
+T_i X_j ||| X-T X-Y U-T U-Y False
+X_i ||| X-T X-Y U-T U-Y False
+X_i X_j ||| X-T X-Y U-T U-Y False
+X_i T_i ||| X-T X-Y U-T U-Y False
+X_i T_i X_j ||| X-T X-Y U-T U-Y False
+||| X-T X-Y X-U U-T U-Y False
+X_j ||| X-T X-Y X-U U-T U-Y False
+T_i ||| X-T X-Y X-U U-T U-Y False
+T_i X_j ||| X-T X-Y X-U U-T U-Y False
+X_i ||| X-T X-Y X-U U-T U-Y False
+X_i X_j ||| X-T X-Y X-U U-T U-Y False
+X_i T_i ||| X-T X-Y X-U U-T U-Y False
+X_i T_i X_j ||| X-T X-Y X-U U-T U-Y False
+||| X-T X-Y U-T U-X False
+X_j ||| X-T X-Y U-T U-X False
+T_i ||| X-T X-Y U-T U-X False
+T_i X_j ||| X-T X-Y U-T U-X False
+X_i ||| X-T X-Y U-T U-X True
+X_i X_j ||| X-T X-Y U-T U-X True
+X_i T_i ||| X-T X-Y U-T U-X True
+X_i T_i X_j ||| X-T X-Y U-T U-X True
+||| X-T X-Y U-T False
+X_j ||| X-T X-Y U-T True
+T_i ||| X-T X-Y U-T False
+T_i X_j ||| X-T X-Y U-T False
+X_i ||| X-T X-Y U-T True
+X_i X_j ||| X-T X-Y U-T True
+X_i T_i ||| X-T X-Y U-T True
+X_i T_i X_j ||| X-T X-Y U-T True
+||| X-T X-Y X-U U-T False
+X_j ||| X-T X-Y X-U U-T True
+T_i ||| X-T X-Y X-U U-T False
+T_i X_j ||| X-T X-Y X-U U-T False
+X_i ||| X-T X-Y X-U U-T True
+X_i X_j ||| X-T X-Y X-U U-T True
+X_i T_i ||| X-T X-Y X-U U-T True
+X_i T_i X_j ||| X-T X-Y X-U U-T True
+||| X-T X-Y U-Y U-X False
+X_j ||| X-T X-Y U-Y U-X True
+T_i ||| X-T X-Y U-Y U-X False
+T_i X_j ||| X-T X-Y U-Y U-X False
+X_i ||| X-T X-Y U-Y U-X False
+X_i X_j ||| X-T X-Y U-Y U-X True
+X_i T_i ||| X-T X-Y U-Y U-X False
+X_i T_i X_j ||| X-T X-Y U-Y U-X True
+||| X-T X-Y U-Y False
+X_j ||| X-T X-Y U-Y True
+T_i ||| X-T X-Y U-Y False
+T_i X_j ||| X-T X-Y U-Y False
+X_i ||| X-T X-Y U-Y True
+X_i X_j ||| X-T X-Y U-Y True
+X_i T_i ||| X-T X-Y U-Y True
+X_i T_i X_j ||| X-T X-Y U-Y True
+||| X-T X-Y X-U U-Y False
+X_j ||| X-T X-Y X-U U-Y True
+T_i ||| X-T X-Y X-U U-Y False
+T_i X_j ||| X-T X-Y X-U U-Y False
+X_i ||| X-T X-Y X-U U-Y True
+X_i X_j ||| X-T X-Y X-U U-Y True
+X_i T_i ||| X-T X-Y X-U U-Y True
+X_i T_i X_j ||| X-T X-Y X-U U-Y True
+||| X-T X-Y U-X False
+X_j ||| X-T X-Y U-X True
+T_i ||| X-T X-Y U-X False
+T_i X_j ||| X-T X-Y U-X False
+X_i ||| X-T X-Y U-X True
+X_i X_j ||| X-T X-Y U-X True
+X_i T_i ||| X-T X-Y U-X True
+X_i T_i X_j ||| X-T X-Y U-X True
+||| X-T X-Y False
+X_j ||| X-T X-Y True
+T_i ||| X-T X-Y False
+T_i X_j ||| X-T X-Y False
+X_i ||| X-T X-Y True
+X_i X_j ||| X-T X-Y True
+X_i T_i ||| X-T X-Y True
+X_i T_i X_j ||| X-T X-Y True
+||| X-T X-Y X-U False
+X_j ||| X-T X-Y X-U True
+T_i ||| X-T X-Y X-U False
+T_i X_j ||| X-T X-Y X-U False
+X_i ||| X-T X-Y X-U True
+X_i X_j ||| X-T X-Y X-U True
+X_i T_i ||| X-T X-Y X-U True
+X_i T_i X_j ||| X-T X-Y X-U True
+||| X-T X-Y Y-U False
+X_j ||| X-T X-Y Y-U True
+T_i ||| X-T X-Y Y-U False
+T_i X_j ||| X-T X-Y Y-U False
+X_i ||| X-T X-Y Y-U True
+X_i X_j ||| X-T X-Y Y-U True
+X_i T_i ||| X-T X-Y Y-U True
+X_i T_i X_j ||| X-T X-Y Y-U True
+||| X-T X-Y X-U Y-U False
+X_j ||| X-T X-Y X-U Y-U True
+T_i ||| X-T X-Y X-U Y-U False
+T_i X_j ||| X-T X-Y X-U Y-U False
+X_i ||| X-T X-Y X-U Y-U True
+X_i X_j ||| X-T X-Y X-U Y-U True
+X_i T_i ||| X-T X-Y X-U Y-U True
+X_i T_i X_j ||| X-T X-Y X-U Y-U True
+||| X-T X-Y T-U U-Y False
+X_j ||| X-T X-Y T-U U-Y False
+T_i ||| X-T X-Y T-U U-Y False
+T_i X_j ||| X-T X-Y T-U U-Y False
+X_i ||| X-T X-Y T-U U-Y False
+X_i X_j ||| X-T X-Y T-U U-Y False
+X_i T_i ||| X-T X-Y T-U U-Y True
+X_i T_i X_j ||| X-T X-Y T-U U-Y True
+||| X-T X-Y X-U T-U U-Y False
+X_j ||| X-T X-Y X-U T-U U-Y False
+T_i ||| X-T X-Y X-U T-U U-Y False
+T_i X_j ||| X-T X-Y X-U T-U U-Y False
+X_i ||| X-T X-Y X-U T-U U-Y False
+X_i X_j ||| X-T X-Y X-U T-U U-Y False
+X_i T_i ||| X-T X-Y X-U T-U U-Y True
+X_i T_i X_j ||| X-T X-Y X-U T-U U-Y True
+||| X-T X-Y T-U False
+X_j ||| X-T X-Y T-U True
+T_i ||| X-T X-Y T-U False
+T_i X_j ||| X-T X-Y T-U False
+X_i ||| X-T X-Y T-U True
+X_i X_j ||| X-T X-Y T-U True
+X_i T_i ||| X-T X-Y T-U True
+X_i T_i X_j ||| X-T X-Y T-U True
+||| X-T X-Y X-U T-U False
+X_j ||| X-T X-Y X-U T-U True
+T_i ||| X-T X-Y X-U T-U False
+T_i X_j ||| X-T X-Y X-U T-U False
+X_i ||| X-T X-Y X-U T-U True
+X_i X_j ||| X-T X-Y X-U T-U True
+X_i T_i ||| X-T X-Y X-U T-U True
+X_i T_i X_j ||| X-T X-Y X-U T-U True
+||| X-T X-Y Y-U T-U False
+X_j ||| X-T X-Y Y-U T-U True
+T_i ||| X-T X-Y Y-U T-U False
+T_i X_j ||| X-T X-Y Y-U T-U False
+X_i ||| X-T X-Y Y-U T-U True
+X_i X_j ||| X-T X-Y Y-U T-U True
+X_i T_i ||| X-T X-Y Y-U T-U True
+X_i T_i X_j ||| X-T X-Y Y-U T-U True
+||| X-T X-Y X-U Y-U T-U False
+X_j ||| X-T X-Y X-U Y-U T-U True
+T_i ||| X-T X-Y X-U Y-U T-U False
+T_i X_j ||| X-T X-Y X-U Y-U T-U False
+X_i ||| X-T X-Y X-U Y-U T-U True
+X_i X_j ||| X-T X-Y X-U Y-U T-U True
+X_i T_i ||| X-T X-Y X-U Y-U T-U True
+X_i T_i X_j ||| X-T X-Y X-U Y-U T-U True

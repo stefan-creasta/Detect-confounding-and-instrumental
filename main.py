@@ -12,4 +12,4 @@ fout = open("output.txt", "w")
 
 (d_separation, sn, en) = read_d_separation_and_start_end(fin, n, d1)
 
-backtracking(np.zeros(len(edges)), edges, sn, en, d1, revD1, d_separation, n, fout)
+backtracking(np.zeros(len(edges)), np.zeros(len(d_separation)), edges, sn, en, d1, revD1, d_separation, n, fout)
