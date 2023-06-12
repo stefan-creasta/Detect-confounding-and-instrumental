@@ -5,16 +5,15 @@ from graph_algorithms import can_get_to, is_grand_child, find_cycle
 from instrumental_node import is_instrumental
 
 # Defining the backtracking function
-def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout):
+def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout, ct):
 
     list = construct_graph(edges, currentTypes, n)
 
-    ct = 0
     #for node in list[d1['V']].fathers:
     #    if node == d1['Z'] or node == d1['U']:
     #        ct += 1
-    #if ct == 2:
-    #    aaaa = 5
+    if ct == 13:
+        aaaa = 5
 
     blocked = np.zeros(3 * n)
     for i in range(len(d_separation)): # also blocking nodes part of the d-separation
@@ -24,7 +23,10 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1,
     start_node = start # T_j
     end_node = end # Y_i
 
-    are_independent = can_get_to(start_node, end_node, list, blocked, n)
+    if blocked[end_node] == True or blocked[start_node] == True:
+        are_independent = True
+    else:
+        are_independent = can_get_to(start_node, end_node, list, blocked, n)
 
     if is_instrumental(instrumental, list, n) == True:
         if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
@@ -43,7 +45,7 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1,
     #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
     flagToStop = changing_current_d_sep(currentDsep, currentTypes, edges)
     if flagToStop == False:
-        backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout)
+        backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout, ct + 1)
 
 # Method to change the values for the d_sep nodes in the backtracking function
 def changing_current_d_sep(currentDsep, currentTypes, edges):

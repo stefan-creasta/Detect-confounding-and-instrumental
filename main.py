@@ -15,4 +15,4 @@ fout = open("output.txt", "w")
 
 instrumental = read_instrumental_info(fin, d1)
 
-backtracking(instrumental, np.zeros(len(edges)), np.zeros(len(d_separation)), edges, sn, en, d1, revD1, d_separation, n, fout)
+backtracking(instrumental, np.zeros(len(edges)), np.zeros(len(d_separation)), edges, sn, en, d1, revD1, d_separation, n, fout, 1)
