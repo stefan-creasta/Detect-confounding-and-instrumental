@@ -1,31 +1,68 @@
 from graph_algorithms import can_get_to
 
-# Method to check whether a start_node is instrumental, given a graph and a final "end_node"
-def is_instrumental(start_node, end_node, list, confounding, n):
-    for node in list[start_node].neighbors: # we check if there is a direct edge between the start node and the end node
-        if node == end_node:
-            return False # if there is, we stopped, as the node is not instrumental
-    # 0 means no edge, 1 means from Z to U and 2 means from U to Z
-    from_Z_to_U = 0
-    # 0 means no edge, 1 means from Y to U and 2 means from U to Y
-    from_Y_to_U = 0
-    for node in list[start_node].neighbors:
-        if node == confounding:
-            from_Z_to_U = 1
-    for node in list[confounding].neighbors:
-        if node == start_node:
-            from_Z_to_U = 2
-    for node in list[confounding].neighbors:
-        if node == end_node:
-            from_Y_to_U = 2
-    for node in list[end_node].neighbors:
-        if node == confounding:
-            from_Y_to_U = 1
-    if not (from_Y_to_U == 0 or from_Z_to_U == 0 or (from_Y_to_U == 1 and from_Z_to_U == 1)): # either there is an edge missing, either there is an immorality present
+import numpy as np
+
+class InstrumentalInfo: # class which depicts the information we are interested in regarding the
+    def __init__(self, Z, X, Y): # instrumental node
+        self.Z = Z
+        self.X = X
+        self.Y = Y
+
+
+# Method to read the info regarding the instrumental node
+def read_instrumental_info(fin, d1):
+    lis = fin.readline().split()
+    return InstrumentalInfo(d1[lis[0]], d1[lis[1]], d1[lis[2]])
+
+# Method to check whether there is an instrumental node in the graph
+def is_instrumental(instrumental, list, n):
+    for node in list[instrumental.Z].neighbors: # we must check that there is no edge between the
+        if node == instrumental.Y: # instrumental and the end node
+            return False
+    thereIsEdge = False
+    for node in list[instrumental.Z].neighbors: # we must check that there is an edge between the
+        if node == instrumental.X: # instrumental and X
+            thereIsEdge = True
+    if thereIsEdge == False:
         return False
-    for node in list[start_node].fathers: # check if the instrument depends only on the theta or on confounding (as well)
-        if node != confounding:
-            if node != start_node + 2 * n:
-                return False
-    can_arrive = can_get_to(start_node, end_node, list, np.zeros(3 * n), n) # the insturment is not independent of Y
-    return not can_arrive
+    if can_get_to_instrumental(instrumental, list, n) == True: # we must check whether we can get to Y
+        return True # from the instrumental without the edge from Z to X
+    return False
+
+# Method for checking whether we can get from the instrumental node to the end node
+def can_get_to_instrumental(instrumental, list, n):
+    class NodeQueue:
+        def __init__(self, nodeId, lastEdge): # last edge 1 if node---->child, 2 if node<----parent, 0 otherwise
+            self.nodeId = nodeId
+            self.lastEdge = lastEdge
+
+    queue = []
+    vizited = np.zeros(3 * n)
+    vizited[instrumental.Z] = 1
+    queue.append(NodeQueue(instrumental.Z, 0))
+    are_independent = True
+    while len(queue) > 0 and are_independent == True:
+        currentNode = queue.pop(0)
+        currentNodeId = currentNode.nodeId
+        if currentNodeId >= n:
+            continue
+        if currentNodeId == instrumental.Y:
+            are_independent = False
+        for neighbor in list[currentNodeId].neighbors:
+            if vizited[int(neighbor)] == 0:
+                if (not(currentNodeId == instrumental.Z and neighbor == instrumental.X)):
+                    queue.append(NodeQueue(int(neighbor), 1))
+                    vizited[int(neighbor)] = 1
+        canGoToParents = False
+        lengthList = len(list[currentNodeId].fathers)
+        lstEdge = currentNode.lastEdge
+        if lengthList < 2 or lstEdge != 1: # we must check if there is just an upwards chain or if we didn't come from another parent
+            canGoToParents = True
+        else: # immorality detected
+            canGoToParents = False
+        if canGoToParents == True:
+            for father in list[currentNodeId].fathers:
+                if vizited[father] == 0:
+                    queue.append(NodeQueue(father, 2))
+                    vizited[father] = 1
+    return are_independent

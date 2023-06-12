@@ -2,11 +2,19 @@ import numpy as np
 
 from graph_constructor import construct_graph
 from graph_algorithms import can_get_to, is_grand_child, find_cycle
+from instrumental_node import is_instrumental
 
 # Defining the backtracking function
-def backtracking(currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout):
+def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout):
 
     list = construct_graph(edges, currentTypes, n)
+
+    ct = 0
+    #for node in list[d1['V']].fathers:
+    #    if node == d1['Z'] or node == d1['U']:
+    #        ct += 1
+    #if ct == 2:
+    #    aaaa = 5
 
     blocked = np.zeros(3 * n)
     for i in range(len(d_separation)): # also blocking nodes part of the d-separation
@@ -18,24 +26,24 @@ def backtracking(currentTypes, currentDsep, edges, start, end, d1, revD1, d_sepa
 
     are_independent = can_get_to(start_node, end_node, list, blocked, n)
 
-    #if is_instrumental(d1["Z"], d1["Y"], list) == True:
-    if find_cycle(list) == False and is_grand_child(d1["Y"], d1["T"], list) == False:
-        for i in range(len(d_separation)): # also blocking nodes part of the d-separation
-            if currentDsep[i] == 1:
-                if d_separation[i] >= n: # printing the nodes part of the d_separation
-                    fout.write(str(revD1[d_separation[i] - n]) + "_i ")
-                else:
-                    fout.write(str(revD1[d_separation[i]]) + "_j ")
-        fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
-        for i in range(n):
-            for j in list[i].neighbors:
-                fout.write(revD1[i] + "-" + revD1[j] + " ")
-        fout.write(str(are_independent) + "\n")
+    if is_instrumental(instrumental, list, n) == True:
+        if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
+            for i in range(len(d_separation)): # also blocking nodes part of the d-separation
+                if currentDsep[i] == 1:
+                    if d_separation[i] >= n: # printing the nodes part of the d_separation
+                        fout.write(str(revD1[d_separation[i] - n]) + "_i ")
+                    else:
+                        fout.write(str(revD1[d_separation[i]]) + "_j ")
+            fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
+            for i in range(n):
+                for j in list[i].neighbors:
+                    fout.write(revD1[i] + "-" + revD1[j] + " ")
+            fout.write(str(are_independent) + "\n")
     #print(are_independent)
     #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
     flagToStop = changing_current_d_sep(currentDsep, currentTypes, edges)
     if flagToStop == False:
-        backtracking(currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout)
+        backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout)
 
 # Method to change the values for the d_sep nodes in the backtracking function
 def changing_current_d_sep(currentDsep, currentTypes, edges):

@@ -1,15 +1,16 @@
+5
+Z X Y U V
 4
-X Y T U
-2
-X T
+Z X
 X Y
-1
-T Y
-3
-U T
-U Y
 U X
-3
-X_i T_i X_j
-T_j
+U Y
+0
+2
+V Z
+V U
+0
+
+Z_i
 Y_i
+Z X Y
