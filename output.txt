@@ -1,3 +1,55 @@
+Z_j Y_j 
+||| Z-X X-Y U-X U-Y False
+Y_i ||| Z-X X-Y U-X U-Y False
+X_j ||| Z-X X-Y U-X U-Y False
+X_j Y_i ||| Z-X X-Y U-X U-Y False
+X_i ||| Z-X X-Y U-X U-Y False
+X_i Y_i ||| Z-X X-Y U-X U-Y False
+X_i X_j ||| Z-X X-Y U-X U-Y False
+X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i ||| Z-X X-Y U-X U-Y False
+Z_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_j Y_j 
+||| Z-X X-Y U-X U-Y False
+Y_i ||| Z-X X-Y U-X U-Y False
+X_j ||| Z-X X-Y U-X U-Y False
+X_j Y_i ||| Z-X X-Y U-X U-Y False
+X_i ||| Z-X X-Y U-X U-Y False
+X_i Y_i ||| Z-X X-Y U-X U-Y False
+X_i X_j ||| Z-X X-Y U-X U-Y False
+X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i ||| Z-X X-Y U-X U-Y False
+Z_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_j Y_j 
+||| Z-X X-Y U-X U-Y False
+Y_i ||| Z-X X-Y U-X U-Y False
+X_j ||| Z-X X-Y U-X U-Y False
+X_j Y_i ||| Z-X X-Y U-X U-Y False
+X_i ||| Z-X X-Y U-X U-Y False
+X_i Y_i ||| Z-X X-Y U-X U-Y False
+X_i X_j ||| Z-X X-Y U-X U-Y False
+X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i ||| Z-X X-Y U-X U-Y False
+Z_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i Y_i ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j ||| Z-X X-Y U-X U-Y False
+Z_i X_i X_j Y_i ||| Z-X X-Y U-X U-Y False
+Z_j Y_j 
 ||| Z-X X-Y U-X U-Y False
 Y_i ||| Z-X X-Y U-X U-Y False
 X_j ||| Z-X X-Y U-X U-Y False

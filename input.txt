@@ -9,6 +9,6 @@ U Y
 0
 4
 Z_i X_i X_j Y_i
-Z_i
-Y_i
+Z_j Z_i
+Y_j Y_i
 Z X Y

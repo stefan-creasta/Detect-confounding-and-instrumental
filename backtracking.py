@@ -3,9 +3,10 @@ import numpy as np
 from graph_constructor import construct_graph
 from graph_algorithms import can_get_to, is_grand_child, find_cycle
 from instrumental_node import is_instrumental
+from d_separation import printing
 
 # Defining the backtracking function
-def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout, ct):
+def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, ct):
 
     list = construct_graph(edges, currentTypes, n)
 
@@ -20,8 +21,8 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1,
         if currentDsep[i] == 1:
             blocked[d_separation[i]] = 1
             
-    start_node = start # T_j
-    end_node = end # Y_i
+    start_node = start_nodes[index_start] # T_j
+    end_node = end_nodes[index_end] # Y_i
 
     if blocked[end_node] == True or blocked[start_node] == True:
         are_independent = True
@@ -32,10 +33,7 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1,
         if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
             for i in range(len(d_separation)): # also blocking nodes part of the d-separation
                 if currentDsep[i] == 1:
-                    if d_separation[i] >= n: # printing the nodes part of the d_separation
-                        fout.write(str(revD1[d_separation[i] - n]) + "_i ")
-                    else:
-                        fout.write(str(revD1[d_separation[i]]) + "_j ")
+                    printing(revD1, d_separation[i], n, fout)
             fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
             for i in range(n):
                 for j in list[i].neighbors:
@@ -43,12 +41,12 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1,
             fout.write(str(are_independent) + "\n")
     #print(are_independent)
     #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
-    flagToStop = changing_current_d_sep(currentDsep, currentTypes, edges)
+    (flagToStop, index_start, index_end) = changing_current_d_sep(currentDsep, currentTypes, edges, start_nodes, end_nodes, index_start, index_end, revD1, n, fout)
     if flagToStop == False:
-        backtracking(instrumental, currentTypes, currentDsep, edges, start, end, d1, revD1, d_separation, n, fout, ct + 1)
+        backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, ct + 1)
 
 # Method to change the values for the d_sep nodes in the backtracking function
-def changing_current_d_sep(currentDsep, currentTypes, edges):
+def changing_current_d_sep(currentDsep, currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
     index = len(currentDsep) - 1
     flagToStop = False
     flagFound = False
@@ -64,11 +62,11 @@ def changing_current_d_sep(currentDsep, currentTypes, edges):
                 flagFound = True
     if flagToStop == True:
         currentDsep = np.zeros(len(currentDsep))
-        flagToStop = changing_current_types(currentTypes, edges)
-    return flagToStop
+        (flagToStop, index_start, index_end) = changing_current_types(currentTypes, edges, sn, en, index_start, index_end, d1, n, fout)
+    return (flagToStop, index_start, index_end)
 
 # Method to change the values for the edges in the backtracking function
-def changing_current_types(currentTypes, edges):
+def changing_current_types(currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
     index = len(currentTypes) - 1
     flagToStop = False
     flagFound = False
@@ -82,4 +80,23 @@ def changing_current_types(currentTypes, edges):
                 index -= 1
             else:
                 flagFound = True
-    return flagToStop
+    if flagToStop == True:
+        currentTypes = np.zeros(len(currentTypes))
+        (flagToStop, index_start, index_end) = changing_current_start_and_end(sn, en, index_start, index_end, d1, n, fout)
+    return (flagToStop, index_start, index_end)
+
+# Method to change the current start and end nodes
+def changing_current_start_and_end(sn, en, index_start, index_end, d1, n, fout):
+    if index_end + 1 < len(en): # if the end node can be moved, move it
+        printing(d1, sn[index_start], n, fout)
+        printing(d1, en[index_end + 1], n, fout)
+        fout.write("\n")
+        return (False, index_start, index_end + 1)
+    else:
+        if index_start + 1 < len(sn): # if the start node can be moved, move it
+            printing(d1, sn[index_start + 1], n, fout)
+            printing(d1, en[0], n, fout)
+            fout.write("\n")
+            return (False, index_start + 1, 0) # reset the end node
+        else:
+            return (True, 0, 0) # the process has finished
