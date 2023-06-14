@@ -51,8 +51,10 @@ def can_get_to(start_node, end_node, list, blocked, n):
             self.lastEdge = lastEdge
 
     queue = []
-    vizited = np.zeros(3 * n)
-    vizited[start_node] = 1
+    vizited_normally = np.zeros(3 * n)
+    vizited_blocked = np.zeros(3 * n)
+    vizited_normally[start_node] = 1
+    vizited_blocked[start_node] = 1
     queue.append(NodeQueue(start_node, 0))
     are_independent = True
     while len(queue) > 0 and are_independent == True:
@@ -62,21 +64,33 @@ def can_get_to(start_node, end_node, list, blocked, n):
             are_independent = False
         if blocked[currentNodeId] == 0: # if the path is not blocked, we can go the children - chain
             for neighbor in list[currentNodeId].neighbors:
-                if vizited[int(neighbor)] == 0:
-                    queue.append(NodeQueue(int(neighbor), 1))
-                    vizited[int(neighbor)] = 1
+                if blocked[int(neighbor)] == 0:
+                    if vizited_normally[int(neighbor)] == 0:
+                        queue.append(NodeQueue(int(neighbor), 1))
+                        vizited_normally[int(neighbor)] = 1
+                else:
+                    if vizited_blocked[int(neighbor)] == 0:
+                        queue.append(NodeQueue(int(neighbor), 1))
+                        vizited_blocked[int(neighbor)] = 1
         canGoToParents = False
         lengthList = len(list[currentNodeId].fathers)
         lstEdge = currentNode.lastEdge
+        normally = True
         if lengthList < 2 or lstEdge != 1: # we must check if there is just an upwards chain or if we didn't come from another parent
             if blocked[currentNodeId] == 0: # if it is an upwards chain, the path must not be blocked
                 canGoToParents = True
         else: # immorality detected
             if blocked[currentNodeId] == 1: # we have to check if the node was selected in the d-separation in order to continue
                 canGoToParents = True
+                normally = False
         if canGoToParents == True:
             for father in list[currentNodeId].fathers:
-                if vizited[father] == 0:
-                    queue.append(NodeQueue(father, 2))
-                    vizited[father] = 1
+                if normally == True:
+                    if vizited_normally[father] == 0:
+                        queue.append(NodeQueue(father, 2))
+                        vizited_normally[father] = 1
+                else:
+                    if vizited_blocked[father] == 0:
+                        queue.append(NodeQueue(father, 2))
+                        vizited_blocked[father] = 1
     return are_independent

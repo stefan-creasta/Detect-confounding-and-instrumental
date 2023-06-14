@@ -13,9 +13,8 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
     #for node in list[d1['V']].fathers:
     #    if node == d1['Z'] or node == d1['U']:
     #        ct += 1
-    if ct == 13:
+    if ct == 500:
         aaaa = 5
-
     blocked = np.zeros(3 * n)
     for i in range(len(d_separation)): # also blocking nodes part of the d-separation
         if currentDsep[i] == 1:
@@ -24,12 +23,12 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
     start_node = start_nodes[index_start] # T_j
     end_node = end_nodes[index_end] # Y_i
 
-    if blocked[end_node] == True or blocked[start_node] == True:
-        are_independent = True
-    else:
-        are_independent = can_get_to(start_node, end_node, list, blocked, n)
+    if start_node == 2 and end_node == 0 and blocked[1] == 1:
+        aaaaaaa = 5
 
-    if is_instrumental(instrumental, list, n) == True:
+    are_independent = can_get_to(start_node, end_node, list, blocked, n)
+
+    if is_instrumental(instrumental, list, n) == True and blocked[end_node] == False and blocked[start_node] == False:
         if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
             if limit_solutions == False or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, list) == False:
                 for i in range(len(d_separation)): # also blocking nodes part of the d-separation
@@ -42,6 +41,7 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
                 fout.write(str(are_independent) + "\n")
     #print(are_independent)
     #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
+    print(ct)
     (flagToStop, index_start, index_end) = changing_current_d_sep(currentDsep, currentTypes, edges, start_nodes, end_nodes, index_start, index_end, revD1, n, fout)
     if flagToStop == False:
         backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, limit_solutions, ct + 1)
