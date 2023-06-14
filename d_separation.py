@@ -20,7 +20,7 @@ def read_start_or_end_nodes(fin, d1, n):
     for elem in list_of_nodes:
         sn_list = elem.split("_")
         sn = d1[sn_list[0]]
-        if sn_list[1] == "i":
+        if sn_list[1] == "i" or sn_list[1] == "i\n":
             sn += n
         nodes.append(sn)
     return nodes
