@@ -35,7 +35,7 @@ def cannot_get_to_instrumental(instrumental, list, n):
     for i in range(n):
         new_list.append(Node(i, []))
     for current_node in new_list:
-        for neighbor in list[i].neighbors:
+        for neighbor in list[current_node.id].neighbors:
             if neighbor != instrumental.X and neighbor < n:
                 current_node.neighbors.append(neighbor)
                 new_list[neighbor].fathers.append(current_node.id)
