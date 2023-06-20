@@ -1,7 +1,7 @@
 import numpy as np
 import sys
 from graph_constructor import read_graph, construct_graph, Node, Edge
-from graph_algorithms import is_grand_child, find_cycle, can_get_to
+from graph_algorithms import is_grand_child, find_cycle, cannot_get_to
 from d_separation import read_d_separation_and_start_end, printing
 from backtracking import backtracking
 from instrumental_node import read_instrumental_info

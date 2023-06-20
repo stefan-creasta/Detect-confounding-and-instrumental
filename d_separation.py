@@ -1,4 +1,4 @@
-from graph_algorithms import can_get_to
+from graph_algorithms import cannot_get_to
 import numpy as np
 
 # Method for reading the d-separation nodes and the start and end nodes
@@ -44,7 +44,7 @@ def check(initial_value, Z, Y, n, start_node, end_node, blocked, list):
     list[Z + n].neighbors = np.append(list[Z + n].neighbors, Y + n)
     #list[Y + n].fathers.append(Z + n)
     list[Y + n].fathers = np.append(list[Y + n].fathers, Z + n)
-    are_independent = can_get_to(start_node, end_node, list, blocked, n)
+    are_independent = cannot_get_to(start_node, end_node, list, blocked, n)
     list[Z].neighbors = np.delete(list[Z].neighbors, len(list[Z].neighbors) - 1)
     list[Y].fathers = np.delete(list[Y].fathers, len(list[Y].fathers) - 1)
     list[Z + n].neighbors = np.delete(list[Z + n].neighbors, len(list[Z + n].neighbors) - 1)

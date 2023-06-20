@@ -44,7 +44,7 @@ def find_cycle(list):
     return False
 
 # Method for checking whether we can get from a start node to an end node
-def can_get_to(start_node, end_node, list, blocked, n):
+def cannot_get_to(start_node, end_node, list, blocked, n):
     class NodeQueue:
         def __init__(self, nodeId, lastEdge): # last edge 1 if node---->child, 2 if node<----parent, 0 otherwise
             self.nodeId = nodeId

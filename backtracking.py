@@ -1,7 +1,7 @@
 import numpy as np
 
 from graph_constructor import construct_graph
-from graph_algorithms import can_get_to, is_grand_child, find_cycle
+from graph_algorithms import cannot_get_to, is_grand_child, find_cycle
 from instrumental_node import is_instrumental
 from d_separation import printing, check
 
@@ -30,7 +30,7 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
     if start_node == 2 and end_node == 4 and sum == 2 and blocked[0] == 1 and blocked[6] == 1:
         aaaaa = 55
 
-    are_independent = can_get_to(start_node, end_node, list, blocked, n)
+    are_independent = cannot_get_to(start_node, end_node, list, blocked, n)
 
     if is_instrumental(instrumental, list, n) == True and blocked[end_node] == False and blocked[start_node] == False:
         if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
