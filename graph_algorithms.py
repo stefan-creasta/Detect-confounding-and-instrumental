@@ -64,14 +64,10 @@ def can_get_to(start_node, end_node, list, blocked, n):
             are_independent = False
         if blocked[currentNodeId] == 0: # if the path is not blocked, we can go the children - chain
             for neighbor in list[currentNodeId].neighbors:
-                if blocked[int(neighbor)] == 0:
-                    if vizited_normally[int(neighbor)] == 0:
-                        queue.append(NodeQueue(int(neighbor), 1))
-                        vizited_normally[int(neighbor)] = 1
-                else:
-                    if vizited_blocked[int(neighbor)] == 0:
-                        queue.append(NodeQueue(int(neighbor), 1))
-                        vizited_blocked[int(neighbor)] = 1
+                if vizited_blocked[int(neighbor)] == 0:
+                    vizited_blocked[int(neighbor)] = 1
+                    #vizited_blocked[int(neighbor)] = 1
+                    queue.append(NodeQueue(int(neighbor), 1))
         canGoToParents = False
         lengthList = len(list[currentNodeId].fathers)
         lstEdge = currentNode.lastEdge
@@ -85,12 +81,7 @@ def can_get_to(start_node, end_node, list, blocked, n):
                 normally = False
         if canGoToParents == True:
             for father in list[currentNodeId].fathers:
-                if normally == True:
-                    if vizited_normally[father] == 0:
-                        queue.append(NodeQueue(father, 2))
-                        vizited_normally[father] = 1
-                else:
-                    if vizited_blocked[father] == 0:
-                        queue.append(NodeQueue(father, 2))
-                        vizited_blocked[father] = 1
+                if vizited_normally[int(father)] == 0:
+                    queue.append(NodeQueue(father, 2))
+                    vizited_normally[father] = 1
     return are_independent

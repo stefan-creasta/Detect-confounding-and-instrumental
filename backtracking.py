@@ -16,8 +16,10 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
     if ct == 500:
         aaaa = 5
     blocked = np.zeros(3 * n)
+    sum = 0
     for i in range(len(d_separation)): # also blocking nodes part of the d-separation
         if currentDsep[i] == 1:
+            sum += 1
             blocked[d_separation[i]] = 1
             
     start_node = start_nodes[index_start] # T_j
@@ -25,6 +27,8 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
 
     if start_node == 2 and end_node == 0 and blocked[1] == 1:
         aaaaaaa = 5
+    if start_node == 2 and end_node == 4 and sum == 2 and blocked[0] == 1 and blocked[6] == 1:
+        aaaaa = 55
 
     are_independent = can_get_to(start_node, end_node, list, blocked, n)
 
