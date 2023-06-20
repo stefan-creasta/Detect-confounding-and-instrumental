@@ -25,12 +25,12 @@ def is_instrumental(instrumental, list, n):
             thereIsEdge = True
     if thereIsEdge == False:
         return False
-    if can_get_to_instrumental(instrumental, list, n) == False: # we must check whether we can get to Y
+    if cannot_get_to_instrumental(instrumental, list, n) == False: # we must check whether we can get to Y
         return True # from the instrumental without the edge from Z to X
     return False
 
 # Method for checking whether we can get from the instrumental node to the end node
-def can_get_to_instrumental(instrumental, list, n):
+def cannot_get_to_instrumental(instrumental, list, n):
     new_list = [] # create the new list of edges, to remove any incoming edges to X
     for i in range(n):
         new_list.append(Node(i, []))
