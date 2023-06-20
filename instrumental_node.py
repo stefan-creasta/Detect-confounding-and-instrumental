@@ -25,8 +25,8 @@ def is_instrumental(instrumental, list, n):
             thereIsEdge = True
     if thereIsEdge == False:
         return False
-    if cannot_get_to_instrumental(instrumental, list, n) == False: # we must check whether we can get to Y
-        return True # from the instrumental without the edge from Z to X
+    if cannot_get_to_instrumental(instrumental, list, n) == True: # we must check whether we can get to Y
+        return True # from the instrumental without all the incoming edges to X
     return False
 
 # Method for checking whether we can get from the instrumental node to the end node
