@@ -1,0 +1,100 @@
+Z_j Y_i 
+X_i ||| X-Y U-X V-Z V-X V-U True
+X_i X_j ||| X-Y U-X V-Z V-X V-U True
+X_i X_j Y_j ||| X-Y U-X V-Z V-X V-U True
+X_i X_j Z_i Y_j ||| X-Y U-X V-Z V-X V-U True
+X_i ||| X-Y U-X V-Z V-X True
+X_i X_j ||| X-Y U-X V-Z V-X True
+X_i X_j Y_j ||| X-Y U-X V-Z V-X True
+X_i X_j Z_i Y_j ||| X-Y U-X V-Z V-X True
+X_i ||| X-Y U-X U-V V-Z V-X True
+X_i X_j ||| X-Y U-X U-V V-Z V-X True
+X_i X_j Y_j ||| X-Y U-X U-V V-Z V-X True
+X_i X_j Z_i Y_j ||| X-Y U-X U-V V-Z V-X True
+X_i ||| X-Y U-X V-Z V-U True
+X_i X_j ||| X-Y U-X V-Z V-U True
+X_i X_j Y_j ||| X-Y U-X V-Z V-U True
+X_i X_j Z_i Y_j ||| X-Y U-X V-Z V-U True
+X_i ||| X-Y U-X U-V V-Z True
+X_i X_j ||| X-Y U-X U-V V-Z True
+X_i X_j Y_j ||| X-Y U-X U-V V-Z True
+X_i X_j Z_i Y_j ||| X-Y U-X U-V V-Z True
+X_i ||| Z-V X-Y U-X V-X V-U True
+X_i X_j ||| Z-V X-Y U-X V-X V-U True
+X_i X_j Y_j ||| Z-V X-Y U-X V-X V-U True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-X V-X V-U True
+X_i ||| Z-V X-Y U-X V-X True
+X_i X_j ||| Z-V X-Y U-X V-X True
+X_i X_j Y_j ||| Z-V X-Y U-X V-X True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-X V-X True
+X_i ||| Z-V X-Y U-X U-V V-X True
+X_i X_j ||| Z-V X-Y U-X U-V V-X True
+X_i X_j Y_j ||| Z-V X-Y U-X U-V V-X True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-X U-V V-X True
+X_i ||| Z-V X-Y U-X V-U True
+X_i X_j ||| Z-V X-Y U-X V-U True
+X_i X_j Y_j ||| Z-V X-Y U-X V-U True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-X V-U True
+X_i ||| X-Y U-Y V-Z V-X True
+X_i X_j ||| X-Y U-Y V-Z V-X True
+X_i X_j Y_j ||| X-Y U-Y V-Z V-X True
+X_i X_j Z_i Y_j ||| X-Y U-Y V-Z V-X True
+X_i ||| Z-V X-Y U-Y V-X True
+X_i X_j ||| Z-V X-Y U-Y V-X True
+X_i X_j Y_j ||| Z-V X-Y U-Y V-X True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-Y V-X True
+X_i ||| X-Y V-Z V-X V-U True
+X_i X_j ||| X-Y V-Z V-X V-U True
+X_i X_j Y_j ||| X-Y V-Z V-X V-U True
+X_i X_j Z_i Y_j ||| X-Y V-Z V-X V-U True
+X_i ||| X-Y V-Z V-X True
+X_i X_j ||| X-Y V-Z V-X True
+X_i X_j Y_j ||| X-Y V-Z V-X True
+X_i X_j Z_i Y_j ||| X-Y V-Z V-X True
+X_i ||| X-Y U-V V-Z V-X True
+X_i X_j ||| X-Y U-V V-Z V-X True
+X_i X_j Y_j ||| X-Y U-V V-Z V-X True
+X_i X_j Z_i Y_j ||| X-Y U-V V-Z V-X True
+X_i ||| Z-V X-Y V-X V-U True
+X_i X_j ||| Z-V X-Y V-X V-U True
+X_i X_j Y_j ||| Z-V X-Y V-X V-U True
+X_i X_j Z_i Y_j ||| Z-V X-Y V-X V-U True
+X_i ||| Z-V X-Y V-X True
+X_i X_j ||| Z-V X-Y V-X True
+X_i X_j Y_j ||| Z-V X-Y V-X True
+X_i X_j Z_i Y_j ||| Z-V X-Y V-X True
+X_i ||| Z-V X-Y U-V V-X True
+X_i X_j ||| Z-V X-Y U-V V-X True
+X_i X_j Y_j ||| Z-V X-Y U-V V-X True
+X_i X_j Z_i Y_j ||| Z-V X-Y U-V V-X True
+X_j ||| X-V U-X U-Y V-Z True
+X_j Y_j ||| X-V U-X U-Y V-Z True
+X_i X_j ||| X-V U-X U-Y V-Z True
+X_i X_j Y_j ||| X-V U-X U-Y V-Z True
+X_i X_j Z_i Y_j ||| X-V U-X U-Y V-Z True
+||| Z-V U-Y U-V V-X True
+Y_j ||| Z-V U-Y U-V V-X True
+Z_i Y_j ||| Z-V U-Y U-V V-X True
+X_i Z_i Y_j ||| Z-V U-Y U-V V-X True
+||| Z-V Y-V U-Y V-X True
+Y_j ||| Z-V Y-V U-Y V-X True
+Z_i Y_j ||| Z-V Y-V U-Y V-X True
+X_j Y_j ||| Z-V Y-V U-Y V-X True
+X_j Z_i Y_j ||| Z-V Y-V U-Y V-X True
+X_i Z_i Y_j ||| Z-V Y-V U-Y V-X True
+||| Z-V Y-V U-Y U-V V-X True
+Y_j ||| Z-V Y-V U-Y U-V V-X True
+Z_i Y_j ||| Z-V Y-V U-Y U-V V-X True
+X_i Z_i Y_j ||| Z-V Y-V U-Y U-V V-X True
+||| Z-V Y-V V-X True
+Y_j ||| Z-V Y-V V-X True
+Z_i Y_j ||| Z-V Y-V V-X True
+X_j Y_j ||| Z-V Y-V V-X True
+X_j Z_i Y_j ||| Z-V Y-V V-X True
+X_i Z_i Y_j ||| Z-V Y-V V-X True
+||| Z-V Y-V U-V V-X True
+Y_j ||| Z-V Y-V U-V V-X True
+Z_i Y_j ||| Z-V Y-V U-V V-X True
+X_j Y_j ||| Z-V Y-V U-V V-X True
+X_j Z_i Y_j ||| Z-V Y-V U-V V-X True
+X_i Z_i Y_j ||| Z-V Y-V U-V V-X True

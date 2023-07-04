@@ -6,7 +6,7 @@ from d_separation import read_d_separation_and_start_end, printing
 from backtracking import backtracking
 from instrumental_node import read_instrumental_info
 
-fin = open("input.txt", "r")
+fin = open("multiple_confoundings.txt", "r")
 fout = open("output.txt", "w")
 
 (n, confounding, edges, d1, revD1) = read_graph(fin)
@@ -20,5 +20,5 @@ fout.write("\n")
 #fout.write(revD1[sn[0]] + " " + revD1[en[0]] + "\n")
 
 limit_solutions = True
-sys.setrecursionlimit(10000)
+sys.setrecursionlimit(100000)
 backtracking(instrumental, np.zeros(len(edges)), np.zeros(len(d_separation)), edges, sn, en, 0, 0, d1, revD1, d_separation, n, fout, limit_solutions, 1)

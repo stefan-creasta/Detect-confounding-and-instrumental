@@ -1,0 +1,16 @@
+4
+X Y T U
+2
+X T
+X Y
+1
+T Y
+3
+U T
+U Y
+U X
+3
+T_i X_i X_j
+T_j
+Y_i
+T X Y

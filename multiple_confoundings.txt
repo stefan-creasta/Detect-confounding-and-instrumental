@@ -1,0 +1,17 @@
+5
+Z X Y U V
+0
+3
+X Y
+U X
+U Y
+4
+V Z
+V X
+V Y
+V U
+6
+X_i X_j Z_i Z_j Y_i Y_j
+Z_j
+Y_i
+Z X Y
