@@ -2,7 +2,7 @@ import numpy as np
 
 from graph_constructor import construct_graph
 from graph_algorithms import cannot_get_to, is_grand_child, find_cycle
-from instrumental_node import is_instrumental
+from instrumental_node import is_instrumental, cannot_get_to_instrumental
 from d_separation import printing, check
 
 # Defining the backtracking function
@@ -32,46 +32,31 @@ def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, en
 
     are_independent = cannot_get_to(start_node, end_node, list, blocked, n)
 
-    if is_instrumental(instrumental, list, n) == True and blocked[end_node] == False and blocked[start_node] == False:
+    if blocked[end_node] == False and blocked[start_node] == False:
         if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
-            if limit_solutions == False or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, list) == False:
+            if limit_solutions == False: #or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, list) == False:
                 for i in range(len(d_separation)): # also blocking nodes part of the d-separation
                     if currentDsep[i] == 1:
                         printing(revD1, d_separation[i], n, fout)
                 fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
-                for i in range(n):
-                    for j in list[i].neighbors:
-                        fout.write(revD1[i] + "-" + revD1[j] + " ")
-                fout.write(str(are_independent) + "\n")
+                #for i in range(n):
+                #    for j in list[i].neighbors:
+                #        fout.write(revD1[i] + "-" + revD1[j] + " ")
+                for i in range(len(currentTypes)):
+                    fout.write(str(currentTypes[i]) + " ")
+                if cannot_get_to_instrumental(instrumental, list, n) == are_independent:
+                    fout.write("True" + "\n")
+                else:
+                    fout.write("False" + "\n")
     #print(are_independent)
     #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
     print(ct)
-    (flagToStop, index_start, index_end) = changing_current_d_sep(currentDsep, currentTypes, edges, start_nodes, end_nodes, index_start, index_end, revD1, n, fout)
+    (flagToStop, index_start, index_end) = changing_current_types(currentDsep, currentTypes, edges, start_nodes, end_nodes, index_start, index_end, revD1, n, fout)
     if flagToStop == False:
         backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, limit_solutions, ct + 1)
 
-# Method to change the values for the d_sep nodes in the backtracking function
-def changing_current_d_sep(currentDsep, currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
-    index = len(currentDsep) - 1
-    flagToStop = False
-    flagFound = False
-    while flagToStop == False and flagFound == False:
-        if index < 0:
-            flagToStop = True
-        else:
-            currentDsep[index] += 1
-            if currentDsep[index] > 1:
-                currentDsep[index] = 0
-                index -= 1
-            else:
-                flagFound = True
-    if flagToStop == True:
-        currentDsep = np.zeros(len(currentDsep))
-        (flagToStop, index_start, index_end) = changing_current_types(currentTypes, edges, sn, en, index_start, index_end, d1, n, fout)
-    return (flagToStop, index_start, index_end)
-
 # Method to change the values for the edges in the backtracking function
-def changing_current_types(currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
+def changing_current_types(currentDsep, currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
     index = len(currentTypes) - 1
     flagToStop = False
     flagFound = False
@@ -87,6 +72,26 @@ def changing_current_types(currentTypes, edges, sn, en, index_start, index_end, 
                 flagFound = True
     if flagToStop == True:
         currentTypes = np.zeros(len(currentTypes))
+        (flagToStop, index_start, index_end) = changing_current_d_sep(currentDsep, sn, en, index_start, index_end, d1, n, fout)
+    return (flagToStop, index_start, index_end)
+
+# Method to change the values for the d_sep nodes in the backtracking function
+def changing_current_d_sep(currentDsep, sn, en, index_start, index_end, d1, n, fout):
+    index = len(currentDsep) - 1
+    flagToStop = False
+    flagFound = False
+    while flagToStop == False and flagFound == False:
+        if index < 0:
+            flagToStop = True
+        else:
+            currentDsep[index] += 1
+            if currentDsep[index] > 1:
+                currentDsep[index] = 0
+                index -= 1
+            else:
+                flagFound = True
+    if flagToStop == True:
+        currentDsep = np.zeros(len(currentDsep))
         (flagToStop, index_start, index_end) = changing_current_start_and_end(sn, en, index_start, index_end, d1, n, fout)
     return (flagToStop, index_start, index_end)
 

@@ -36,7 +36,7 @@ def Z_X_independent(instrumental, list, n):
             if neighbor < n:
                 current_node.neighbors.append(neighbor)
                 new_list[neighbor].fathers.append(current_node.id)
-    return cannot_get_to(instrumental.Z, instrumental.Y, new_list, np.zeros(n), n)
+    return cannot_get_to(instrumental.Z, instrumental.X, new_list, np.zeros(n), n)
 
 # Method for checking whether we can get from the instrumental node to the end node
 def cannot_get_to_instrumental(instrumental, list, n):

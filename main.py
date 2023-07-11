@@ -19,6 +19,6 @@ printing(revD1, en[0], n, fout)
 fout.write("\n")
 #fout.write(revD1[sn[0]] + " " + revD1[en[0]] + "\n")
 
-limit_solutions = True
+limit_solutions = False
 sys.setrecursionlimit(100000)
 backtracking(instrumental, np.zeros(len(edges)), np.zeros(len(d_separation)), edges, sn, en, 0, 0, d1, revD1, d_separation, n, fout, limit_solutions, 1)
