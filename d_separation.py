@@ -1,3 +1,5 @@
+from graph_algorithms import cannot_get_to
+import numpy as np
 
 # Method for reading the d-separation nodes and the start and end nodes
 def read_d_separation_and_start_end(fin, n, d1):
@@ -31,3 +33,20 @@ def printing(revD1, e, n, fout):
         fout.write(str(revD1[e - n]) + "_i ")
     else:
         fout.write(str(revD1[e]) + "_j ")
+
+
+# Method to check whether the d-separation is identical when you add the Z->Y edge or not
+def check(initial_value, Z, Y, n, start_node, end_node, blocked, list):
+    list[Z].neighbors = np.append(list[Z].neighbors, Y)
+    #list[Y].fathers.append(Z)
+    list[Y].fathers = np.append(list[Y].fathers, Z)
+    #list[Z + n].neighbors.append(Y + n)
+    list[Z + n].neighbors = np.append(list[Z + n].neighbors, Y + n)
+    #list[Y + n].fathers.append(Z + n)
+    list[Y + n].fathers = np.append(list[Y + n].fathers, Z + n)
+    are_independent = cannot_get_to(start_node, end_node, list, blocked, n)
+    list[Z].neighbors = np.delete(list[Z].neighbors, len(list[Z].neighbors) - 1)
+    list[Y].fathers = np.delete(list[Y].fathers, len(list[Y].fathers) - 1)
+    list[Z + n].neighbors = np.delete(list[Z + n].neighbors, len(list[Z + n].neighbors) - 1)
+    list[Y + n].fathers = np.delete(list[Y + n].fathers, len(list[Y + n].fathers) - 1)
+    return initial_value == are_independent

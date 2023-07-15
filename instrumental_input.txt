@@ -1,13 +1,14 @@
 4
-Z T Y U
-0
-0
+Z X Y U
 4
-Z T
-T Y
-U T
+Z X
+X Y
+U X
 U Y
 0
-
-T_j
-Y_i
+0
+6
+X_i X_j Z_i Z_j Y_i Y_j
+Z_j Z_i Y_j Y_i X_j X_i
+Y_j Y_i Z_j Z_i X_j X_i
+Z X Y
