@@ -1,4 +1,4 @@
-# Detecting_confounding
+# Detecting confounding and instrumental elements
 This repository contains the code through which research has been conducted regarding the detection of confounding elements, but also of instrumental variables in Bayesian networks. It can reproduce the results found in [this paper](https://arxiv.org/pdf/2205.13935.pdf). The program has also been used to detect whether is it possible to verify the presence of an instrumental variable in a simple graph with 4 nodes - one of which being a confounding element, but unfortunately, with little success. There was no d-separation found such that all of the criterias are met for an instrumental variable. Currently, there is research undergoing on whether a node can be checked as being an instrumental variable in a graph with 5 nodes - 2 of which are confounding elements.
 
 # Input, Output format and Implementation
