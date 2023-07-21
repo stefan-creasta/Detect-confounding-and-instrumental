@@ -25,8 +25,6 @@ def read_graph(fin):
         d1[nodesList[i]] = i
         revD1[i] = nodesList[i]
 
-    confounding = n - 1
-
     #edges are of three types: edges which do not change - type 0
     #                          edges which are either present, or not - type 1
     #                          edges which can change direction and be either present or not - type 2
@@ -52,7 +50,7 @@ def read_graph(fin):
     for i in range(n3):
         edgePair = fin.readline().split()
         edges.append(Edge(d1[edgePair[0]], d1[edgePair[1]], int(2)))
-    return (n, confounding, edges, d1, revD1)
+    return (n, edges, d1, revD1)
 
 def construct_graph(edges, currentTypes, n):
     # constructing the normal graph

@@ -6,107 +6,110 @@ from instrumental_node import is_instrumental, cannot_get_to_instrumental
 from d_separation import printing, check
 
 # Defining the backtracking function
-def backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, limit_solutions, ct):
+def backtracking(instrumental, graph_details, current_graph_details, fout, limit_solutions, ct):
 
-    list = construct_graph(edges, currentTypes, n)
+    n = graph_details.n
 
-    #for node in list[d1['V']].fathers:
-    #    if node == d1['Z'] or node == d1['U']:
-    #        ct += 1
+    current_edges = construct_graph(graph_details.edge_types, current_graph_details.current_edge_types, n)
+
     if ct == 500:
         aaaa = 5
     blocked = np.zeros(3 * n)
     sum = 0
-    for i in range(len(d_separation)): # also blocking nodes part of the d-separation
-        if currentDsep[i] == 1:
+    for i in range(len(graph_details.d_separation)): # also blocking nodes part of the d-separation
+        if current_graph_details.current_d_separation[i] == 1:
             sum += 1
-            blocked[d_separation[i]] = 1
+            blocked[graph_details.d_separation[i]] = 1
             
-    start_node = start_nodes[index_start] # T_j
-    end_node = end_nodes[index_end] # Y_i
+    start_node = graph_details.starting_nodes[current_graph_details.index_starting_nodes]
+    end_node = graph_details.ending_nodes[current_graph_details.index_ending_nodes]
 
-    if start_node == 2 and end_node == 0 and blocked[1] == 1:
-        aaaaaaa = 5
-    if start_node == 2 and end_node == 4 and sum == 2 and blocked[0] == 1 and blocked[6] == 1:
-        aaaaa = 55
-
-    are_independent = cannot_get_to(start_node, end_node, list, blocked, n)
+    are_independent = cannot_get_to(start_node, end_node, current_edges, blocked, n)
 
     if blocked[end_node] == False and blocked[start_node] == False:
-        if find_cycle(list) == False: #and is_grand_child(d1["Y"], d1["T"], list) == False:
-            if limit_solutions == False: #or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, list) == False:
-                for i in range(len(d_separation)): # also blocking nodes part of the d-separation
-                    if currentDsep[i] == 1:
-                        printing(revD1, d_separation[i], n, fout)
+        if find_cycle(current_edges) == False: #and is_grand_child(d1["Y"], d1["T"], current_edges) == False:
+            if limit_solutions == False: #or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, current_edges) == False:
+                for i in range(len(graph_details.d_separation)): # also blocking nodes part of the d-separation
+                    if current_graph_details.current_d_separation[i] == 1:
+                        printing(graph_details.map_to_character, graph_details.d_separation[i], n, fout)
                 fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
                 #for i in range(n):
-                #    for j in list[i].neighbors:
+                #    for j in current_edges[i].neighbors:
                 #        fout.write(revD1[i] + "-" + revD1[j] + " ")
-                for i in range(len(currentTypes)):
-                    fout.write(str(currentTypes[i]) + " ")
-                if cannot_get_to_instrumental(instrumental, list, n) == are_independent:
-                    fout.write("True" + "\n")
-                else:
-                    fout.write("False" + "\n")
+                for i in range(len(current_graph_details.current_edge_types)):
+                    fout.write(str(current_graph_details.current_edge_types[i]) + " ")
+                graph_id = 0
+                power3 = 1
+                for i in range(len(current_graph_details.current_edge_types)):
+                    graph_id += current_graph_details.current_edge_types[len(current_graph_details.current_edge_types) - i - 1] * power3
+                    power3 *= 3
+                fout.write(str(cannot_get_to_instrumental(instrumental, current_edges, n)) + " " + str(are_independent) + " " + str(graph_id) + "\n")
+                #if cannot_get_to_instrumental(instrumental, current_edges, n) == are_independent:
+                #    fout.write("True" + "\n")
+                #else:
+                #    fout.write("False" + "\n")
     #print(are_independent)
-    #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], list)))
+    #print("is instrument: " + str(is_instrumental(d1["Z"], d1["Y"], current_edges)))
     print(ct)
-    (flagToStop, index_start, index_end) = changing_current_types(currentDsep, currentTypes, edges, start_nodes, end_nodes, index_start, index_end, revD1, n, fout)
+    flagToStop = changing_current_types(graph_details, current_graph_details, n, fout)
     if flagToStop == False:
-        backtracking(instrumental, currentTypes, currentDsep, edges, start_nodes, end_nodes, index_start, index_end, d1, revD1, d_separation, n, fout, limit_solutions, ct + 1)
+        backtracking(instrumental, graph_details, current_graph_details, fout, limit_solutions, ct + 1)
 
-# Method to change the values for the edges in the backtracking function
-def changing_current_types(currentDsep, currentTypes, edges, sn, en, index_start, index_end, d1, n, fout):
-    index = len(currentTypes) - 1
+# Method to change the values for the edge types in the backtracking function
+def changing_current_types(graph_details, current_graph_details, n, fout):
+    index = len(current_graph_details.current_edge_types) - 1
     flagToStop = False
     flagFound = False
     while flagToStop == False and flagFound == False:
         if index < 0:
             flagToStop = True
         else:
-            currentTypes[index] += 1
-            if currentTypes[index] > edges[index].type:
-                currentTypes[index] = 0
+            current_graph_details.current_edge_types[index] += 1
+            if current_graph_details.current_edge_types[index] > graph_details.edge_types[index].type:
+                current_graph_details.current_edge_types[index] = 0
                 index -= 1
             else:
                 flagFound = True
     if flagToStop == True:
-        currentTypes = np.zeros(len(currentTypes))
-        (flagToStop, index_start, index_end) = changing_current_d_sep(currentDsep, sn, en, index_start, index_end, d1, n, fout)
-    return (flagToStop, index_start, index_end)
+        current_graph_details.current_edge_types = np.zeros(len(current_graph_details.current_edge_types))
+        flagToStop = changing_current_d_sep(graph_details, current_graph_details, n, fout)
+    return flagToStop
 
 # Method to change the values for the d_sep nodes in the backtracking function
-def changing_current_d_sep(currentDsep, sn, en, index_start, index_end, d1, n, fout):
-    index = len(currentDsep) - 1
+def changing_current_d_sep(graph_details, current_graph_details, n, fout):
+    index = len(current_graph_details.current_d_separation) - 1
     flagToStop = False
     flagFound = False
     while flagToStop == False and flagFound == False:
         if index < 0:
             flagToStop = True
         else:
-            currentDsep[index] += 1
-            if currentDsep[index] > 1:
-                currentDsep[index] = 0
+            current_graph_details.current_d_separation[index] += 1
+            if current_graph_details.current_d_separation[index] > 1:
+                current_graph_details.current_d_separation[index] = 0
                 index -= 1
             else:
                 flagFound = True
     if flagToStop == True:
-        currentDsep = np.zeros(len(currentDsep))
-        (flagToStop, index_start, index_end) = changing_current_start_and_end(sn, en, index_start, index_end, d1, n, fout)
-    return (flagToStop, index_start, index_end)
+        current_graph_details.current_d_separation = np.zeros(len(current_graph_details.current_d_separation))
+        flagToStop = changing_current_start_and_end(graph_details, current_graph_details, n, fout)
+    return flagToStop
 
 # Method to change the current start and end nodes
-def changing_current_start_and_end(sn, en, index_start, index_end, d1, n, fout):
-    if index_end + 1 < len(en): # if the end node can be moved, move it
-        printing(d1, sn[index_start], n, fout)
-        printing(d1, en[index_end + 1], n, fout)
+def changing_current_start_and_end(graph_details, current_graph_details, n, fout):
+    if current_graph_details.index_ending_nodes + 1 < len(graph_details.ending_nodes): # if the end node can be moved, move it
+        current_graph_details.index_ending_nodes += 1
+        printing(graph_details.map_to_id, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
+        printing(graph_details.map_to_id, graph_details.ending_nodes[current_graph_details.index_ending_nodes], n, fout)
         fout.write("\n")
-        return (False, index_start, index_end + 1)
+        return False
     else:
-        if index_start + 1 < len(sn): # if the start node can be moved, move it
-            printing(d1, sn[index_start + 1], n, fout)
-            printing(d1, en[0], n, fout)
+        if current_graph_details.index_starting_nodes + 1 < len(graph_details.starting_nodes): # if the start node can be moved, move it
+            current_graph_details.index_starting_nodes += 1
+            current_graph_details.index_ending_nodes = 0 # reset the end node
+            printing(graph_details.map_to_id, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
+            printing(graph_details.map_to_id, graph_details.ending_nodes[0], n, fout)
             fout.write("\n")
-            return (False, index_start + 1, 0) # reset the end node
+            return False
         else:
-            return (True, 0, 0) # the process has finished
+            return True # the process has finished
