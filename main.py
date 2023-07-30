@@ -25,5 +25,5 @@ fout.write("\n")
 #fout.write(revD1[sn[0]] + " " + revD1[en[0]] + "\n")
 
 limit_solutions = False
-sys.setrecursionlimit(100000)
+sys.setrecursionlimit(10000000)
 backtracking(instrumental, graph_details, current_graph_details, fout, limit_solutions, 1)

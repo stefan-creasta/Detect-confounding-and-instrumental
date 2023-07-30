@@ -26,23 +26,24 @@ def backtracking(instrumental, graph_details, current_graph_details, fout, limit
 
     are_independent = cannot_get_to(start_node, end_node, current_edges, blocked, n)
 
-    if blocked[end_node] == False and blocked[start_node] == False:
+    graph_id = 0
+    power3 = 1
+    for i in range(len(current_graph_details.current_edge_types)):
+        graph_id += current_graph_details.current_edge_types[len(current_graph_details.current_edge_types) - i - 1] * power3
+        power3 *= 3
+
+    if blocked[end_node] == False and blocked[start_node] == False and start_node != end_node:
         if find_cycle(current_edges) == False: #and is_grand_child(d1["Y"], d1["T"], current_edges) == False:
-            if limit_solutions == False: #or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, current_edges) == False:
+            if limit_solutions == False and graph_id == 4 and cannot_get_to_instrumental(instrumental, current_edges, n) == are_independent: #or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, current_edges) == False:
                 for i in range(len(graph_details.d_separation)): # also blocking nodes part of the d-separation
                     if current_graph_details.current_d_separation[i] == 1:
                         printing(graph_details.map_to_character, graph_details.d_separation[i], n, fout)
                 fout.write("||| ") # separate the graph print with the d_separation nodes by '|||'
-                #for i in range(n):
-                #    for j in current_edges[i].neighbors:
-                #        fout.write(revD1[i] + "-" + revD1[j] + " ")
-                for i in range(len(current_graph_details.current_edge_types)):
-                    fout.write(str(current_graph_details.current_edge_types[i]) + " ")
-                graph_id = 0
-                power3 = 1
-                for i in range(len(current_graph_details.current_edge_types)):
-                    graph_id += current_graph_details.current_edge_types[len(current_graph_details.current_edge_types) - i - 1] * power3
-                    power3 *= 3
+                for i in range(n):
+                    for j in current_edges[i].neighbors:
+                        fout.write(graph_details.map_to_character[i] + "-" + graph_details.map_to_character[j] + " ")
+                #for i in range(len(current_graph_details.current_edge_types)):
+                #    fout.write(str(current_graph_details.current_edge_types[i]) + " ")
                 fout.write(str(cannot_get_to_instrumental(instrumental, current_edges, n)) + " " + str(are_independent) + " " + str(graph_id) + "\n")
                 #if cannot_get_to_instrumental(instrumental, current_edges, n) == are_independent:
                 #    fout.write("True" + "\n")
@@ -99,16 +100,16 @@ def changing_current_d_sep(graph_details, current_graph_details, n, fout):
 def changing_current_start_and_end(graph_details, current_graph_details, n, fout):
     if current_graph_details.index_ending_nodes + 1 < len(graph_details.ending_nodes): # if the end node can be moved, move it
         current_graph_details.index_ending_nodes += 1
-        printing(graph_details.map_to_id, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
-        printing(graph_details.map_to_id, graph_details.ending_nodes[current_graph_details.index_ending_nodes], n, fout)
+        printing(graph_details.map_to_character, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
+        printing(graph_details.map_to_character, graph_details.ending_nodes[current_graph_details.index_ending_nodes], n, fout)
         fout.write("\n")
         return False
     else:
         if current_graph_details.index_starting_nodes + 1 < len(graph_details.starting_nodes): # if the start node can be moved, move it
             current_graph_details.index_starting_nodes += 1
             current_graph_details.index_ending_nodes = 0 # reset the end node
-            printing(graph_details.map_to_id, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
-            printing(graph_details.map_to_id, graph_details.ending_nodes[0], n, fout)
+            printing(graph_details.map_to_character, graph_details.starting_nodes[current_graph_details.index_starting_nodes], n, fout)
+            printing(graph_details.map_to_character, graph_details.ending_nodes[0], n, fout)
             fout.write("\n")
             return False
         else:
