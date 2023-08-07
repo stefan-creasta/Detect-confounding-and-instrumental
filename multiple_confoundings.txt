@@ -12,6 +12,6 @@ V Y
 V U
 6
 X_i X_j Z_i Z_j Y_i Y_j
-X_i X_j Z_i Z_j Y_i Y_j
-X_i X_j Z_i Z_j Y_i Y_j
+Z_j
+Y_i
 Z X Y

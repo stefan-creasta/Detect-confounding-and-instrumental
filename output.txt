@@ -1,36 +1,41 @@
-X_i X_i 
-X_i X_j 
-X_i Z_i 
-X_i Z_j 
-X_i Y_i 
-X_i Y_j 
-X_j X_i 
-X_j X_j 
-X_j Z_i 
-X_j Z_j 
-X_j Y_i 
-X_j Y_j 
-Z_i X_i 
-Z_i X_j 
-Z_i Z_i 
-Z_i Z_j 
-Z_i Y_i 
-Z_i Y_j 
-Z_j X_i 
-Z_j X_j 
-Z_j Z_i 
-Z_j Z_j 
-Z_j Y_i 
-Z_j Y_j 
-Y_i X_i 
-Y_i X_j 
-Y_i Z_i 
-Y_i Z_j 
-Y_i Y_i 
-Y_i Y_j 
-Y_j X_i 
-Y_j X_j 
-Y_j Z_i 
-Y_j Z_j 
-Y_j Y_i 
-Y_j Y_j 
+T_j Y_i 
+T_i X_i X_j ||| X-T X-Y T-Y U-T U-Y U-X False 0.0
+T_i X_i X_j ||| X-T X-Y T-Y U-T U-Y False 1.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y U-T U-Y False 2.0
+T_i X_i X_j ||| X-T X-Y T-Y U-T U-X True 3.0
+T_i X_i X_j ||| X-T X-Y T-Y U-T True 4.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y U-T True 5.0
+T_i X_i X_j ||| X-T X-Y T-Y U-Y U-X True 9.0
+T_i X_i X_j ||| X-T X-Y T-Y U-Y True 10.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y U-Y True 11.0
+T_i X_i X_j ||| X-T X-Y T-Y U-X True 12.0
+T_i X_i X_j ||| X-T X-Y T-Y True 13.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y True 14.0
+T_i X_i X_j ||| X-T X-Y Y-U T-Y True 16.0
+T_i X_i X_j ||| X-T X-Y X-U Y-U T-Y True 17.0
+T_i X_i X_j ||| X-T X-Y T-Y T-U U-Y True 19.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y T-U U-Y True 20.0
+T_i X_i X_j ||| X-T X-Y T-Y T-U True 22.0
+T_i X_i X_j ||| X-T X-Y X-U T-Y T-U True 23.0
+T_i X_i X_j ||| X-T X-Y Y-U T-Y T-U True 25.0
+T_i X_i X_j ||| X-T X-Y X-U Y-U T-Y T-U True 26.0
+T_i X_i X_j ||| X-T X-Y U-T U-Y U-X False 27.0
+T_i X_i X_j ||| X-T X-Y U-T U-Y False 28.0
+T_i X_i X_j ||| X-T X-Y X-U U-T U-Y False 29.0
+T_i X_i X_j ||| X-T X-Y U-T U-X True 30.0
+T_i X_i X_j ||| X-T X-Y U-T True 31.0
+T_i X_i X_j ||| X-T X-Y X-U U-T True 32.0
+T_i X_i X_j ||| X-T X-Y U-Y U-X True 36.0
+T_i X_i X_j ||| X-T X-Y U-Y True 37.0
+T_i X_i X_j ||| X-T X-Y X-U U-Y True 38.0
+T_i X_i X_j ||| X-T X-Y U-X True 39.0
+T_i X_i X_j ||| X-T X-Y True 40.0
+T_i X_i X_j ||| X-T X-Y X-U True 41.0
+T_i X_i X_j ||| X-T X-Y Y-U True 43.0
+T_i X_i X_j ||| X-T X-Y X-U Y-U True 44.0
+T_i X_i X_j ||| X-T X-Y T-U U-Y True 46.0
+T_i X_i X_j ||| X-T X-Y X-U T-U U-Y True 47.0
+T_i X_i X_j ||| X-T X-Y T-U True 49.0
+T_i X_i X_j ||| X-T X-Y X-U T-U True 50.0
+T_i X_i X_j ||| X-T X-Y Y-U T-U True 52.0
+T_i X_i X_j ||| X-T X-Y X-U Y-U T-U True 53.0

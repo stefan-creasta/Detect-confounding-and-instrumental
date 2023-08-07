@@ -1,19 +1,18 @@
 # Class dedicated for storing the graph details present in the input file
 class GraphDetails:
-    def __init__(self, n, edge_types, map_to_id, map_to_character, d_separation, starting_nodes, ending_nodes):
-        self.n = n # assigning the number of nodes, having ids from 0 to n - 1
-        self.edge_types = edge_types # assigning the different types of edges that this graph can have
-        self.map_to_id = map_to_id # assigning the dictionary responsible for converting chatacters to ids
-        self.map_to_character = map_to_character # assigning the dictionary responsible for converting ids to chatacters
-        self.d_separation = d_separation # assigning all of the possible nodes that can be part of a d-separation
-        self.starting_nodes = starting_nodes # assigning all of the possible nodes that can be starting node
-        self.ending_nodes = ending_nodes # assigning all of the possible nodes that can be ending nodes
+    def __init__(self, n, edge_types, map_to_id, map_to_character, d_separation, start_nodes, end_nodes):
+        self.n = n # Assign the number of nodes, having ids from 0 to n - 1 - variable
+        self.edge_types = edge_types # Assign the different types of edges that this graph can have - array
+        self.map_to_id = map_to_id # Assign the dictionary responsible for converting chatacters to ids - dictionary (for example, node 'X' will be translated to node 0)
+        self.map_to_character = map_to_character # Assign the dictionary responsible for converting ids to chatacters - dictionary (for example, node 0 will be translated to node 'X')
+        self.d_separation = d_separation # Assign all of the possible nodes that can be part of a d-separation - array
+        self.start_nodes = start_nodes # Assign all of the possible nodes that can be start nodes - array
+        self.end_nodes = end_nodes # Assign all of the possible nodes that can be end nodes - array
 
-# Class dedicated for storing details regarding the current graph details, which are to be computed at the next iteration in the backtracking function
+# Class dedicated for storing details regarding the current graph, enabling iteration in the backtracking algorithm
 class CurrentGraphDetails:
-    def __init__(self, current_edge_types, current_d_separation, index_starting_nodes, index_ending_nodes):
-        self.current_edge_types = current_edge_types # assigning the current edge types
-        self.current_d_separation = current_d_separation # assigning the current nodes which are part of the d-separation
-        self.index_starting_nodes = index_starting_nodes # assigning the index associated with the current starting node; the starting node can be found by accesing the starting_nodes list from above, at this index
-        self.index_ending_nodes = index_ending_nodes # assigning the index associated with the current ending node; the edning node can be found by accesing the edning_nodes list from above, at this index
-
+    def __init__(self, current_edge_types, current_d_separation, index_start_nodes, index_end_nodes):
+        self.current_edge_types = current_edge_types # Assign the current edge types - array
+        self.current_d_separation = current_d_separation # Assign the current nodes which are part of the d-separation - array
+        self.index_start_nodes = index_start_nodes # Assign the index associated with the current start node - variable (the starting node can be found by accesing the start_nodes list from above, at this index)
+        self.index_end_nodes = index_end_nodes # Assign the index associated with the current end node - variable (the ending node can be found by accesing the end_nodes list from above, at this index)

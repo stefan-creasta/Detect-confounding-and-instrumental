@@ -3,10 +3,10 @@ from graph_constructor import Node
 import numpy as np
 
 class InstrumentalInfo: # class which depicts the information we are interested in regarding the
-    def __init__(self, Z, X, Y): # instrumental node
-        self.Z = Z
-        self.X = X
-        self.Y = Y
+    def __init__(self, Z, X, Y):
+        self.Z = Z # Instrumental variable
+        self.X = X # Explanatory variable
+        self.Y = Y # Dependent variable
 
 
 # Method to read the info regarding the instrumental node
@@ -16,19 +16,18 @@ def read_instrumental_info(fin, d1):
 
 # Method to check whether there is an instrumental node in the graph
 def is_instrumental(instrumental, list, n):
-    for node in list[instrumental.Z].neighbors: # we must check that there is no edge between the
-        if node == instrumental.Y: # instrumental and the end node
+    for node in list[instrumental.Z].neighbors: # We must check that there is no edge between the instrument and the outcome
+        if node == instrumental.Y:
             return False
-    thereIsEdge = False
-    if Z_X_independent(instrumental, list, n) == True:
+    if Z_X_independent(instrumental, list, n) == True: # Check whether Z and X are independent
         return False
-    if cannot_get_to_instrumental(instrumental, list, n) == True: # we must check whether we can get to Y
-        return True # from the instrumental without all the incoming edges to X
+    if cannot_get_to_instrumental(instrumental, list, n) == True: # Check whether we can get to Y from the instrumental without all the incoming edges to X
+        return True
     return False
 
 # Method for checking whether Z and X are independent
 def Z_X_independent(instrumental, list, n):
-    new_list = [] # create the new list of edges, without nodes with id greater than n
+    new_list = [] # Create the new list of edges, without nodes with id greater than n
     for i in range(n):
         new_list.append(Node(i, []))
     for current_node in new_list:
@@ -40,7 +39,7 @@ def Z_X_independent(instrumental, list, n):
 
 # Method for checking whether we can get from the instrumental node to the end node
 def cannot_get_to_instrumental(instrumental, list, n):
-    new_list = [] # create the new list of edges, to remove any incoming edges to X
+    new_list = [] # Create the new list of edges, and remove any incoming edges to X
     for i in range(n):
         new_list.append(Node(i, []))
     for current_node in new_list:
