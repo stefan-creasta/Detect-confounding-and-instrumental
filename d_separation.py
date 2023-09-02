@@ -1,9 +1,9 @@
 from graph_algorithms import cannot_get_to
 import numpy as np
 
-# Method for reading the d-separation nodes and the start and end nodes
+# Method for reading the three sets of nodes which compose a d-separation: X, Y and Z
 def read_d_separation_and_start_end(fin, n, d1):
-    # Read the d-separation nodes, which are separated by ' ' on a single line
+    # Read the nodes that we can condition on - Z - which are separated by ' ' on a single line
     d_sep_size = int(fin.readline())
     d_separation_string = fin.readline().split()
     d_separation = []
@@ -14,9 +14,9 @@ def read_d_separation_and_start_end(fin, n, d1):
         else: # Otherwise, it ends with 'i', and the number of nodes must be added to the id
             d_separation.append(d1[currentNodes[0]] + n)
 
-    # Read the start and end nodes
-    sn = read_start_or_end_nodes(fin, d1, n) # First the start nodes
-    en = read_start_or_end_nodes(fin, d1, n) # Then the end nodes
+    # Read the nodes which we check for independence
+    sn = read_start_or_end_nodes(fin, d1, n) # Read the first set - X. The nodes part of this set will also be referred to as 'start nodes'
+    en = read_start_or_end_nodes(fin, d1, n) # Read the second set - Y. The nodes part of this set will also be referred to as 'end nodes'
     return (d_separation, sn, en)
 
 # Method to read the start or end nodes

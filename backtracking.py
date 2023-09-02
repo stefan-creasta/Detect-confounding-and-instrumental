@@ -12,8 +12,8 @@ from d_separation import printing, check
 #       4) Print the current d-separation, alongside the edges which form the current graph
 #       5) Try to move on to the next graph which can be created, by incrementing the next possible edge type without exceeding the limit associated with that edge type
 #       6) If the next graph can be created, go back to step 4). Otherwise, reinitialize all edge types and continue with step 7)
-#       7) Try to consider the next d-separation which can be created, by including the next possible node which has not been included before
-#       8) If the next d-separation can be created, go back to step 4). Otherwise remove all the nodes from the current d-separation and continue with step 9)
+#       7) Try to consider the next d-separation which can be created, by including the next possible node in the list of nodes which have been conditioned on
+#       8) If the next d-separation can be created, go back to step 4). Otherwise remove all the nodes that are being condition on and continue with step 9)
 #       9) Try to consider the next end node, by incrementing the index associated with it
 #       10) If the next end node can be considered, go back to step 3). Otherwise reinitialize the index associated with the end node and continue with step 11)
 #       11) Try to consider the next start node, by incrementing the index associated with it
@@ -35,7 +35,7 @@ def backtracking(instrumental, graph_details, current_graph_details, problem_set
     # Initializing the array responsible for storing whether a node is conditioned on or not
     blocked = np.zeros(3 * n)
 
-    # Condition on the nodes, which are part of the current d-separation
+    # Condition on the nodes, part of set Z
     for i in range(len(graph_details.d_separation)):
         if current_graph_details.current_d_separation[i] == 1:
             nr_of_nodes_d_separation += 1
@@ -58,11 +58,11 @@ def backtracking(instrumental, graph_details, current_graph_details, problem_set
     # Check for the desired setting
     if problem_setting == "paper":
         if find_cycle(current_edges) == False and is_grand_child(graph_details.map_to_id["Y"], graph_details.map_to_id["T"], current_edges) == False: # Check for cycles and whether T happens before Y
-            if nr_of_nodes_d_separation == 3: # Check whether the d-separation contains the correct number of nodes, just as in the paper - we are not interested in the d-separations which do not contain fewer nodes, for this particular setting
-                for i in range(len(graph_details.d_separation)): # Print the nodes that are part of the d-separation
+            if nr_of_nodes_d_separation == 3: # Check whether there are three nodes being conditioned on, just as in the paper
+                for i in range(len(graph_details.d_separation)): # Print the nodes that are conditioned on
                     if current_graph_details.current_d_separation[i] == 1:
                         printing(graph_details.map_to_character, graph_details.d_separation[i], n, fout)
-                fout.write("||| ") # Separate the d-separation from the graph edges in the output file by '|||'
+                fout.write("||| ") # Separate the set Z of the d-separation from the graph edges in the output file by '|||'
                 for i in range(n): # Print the edges
                     for j in current_edges[i].neighbors:
                         fout.write(graph_details.map_to_character[i] + "-" + graph_details.map_to_character[j] + " ")
@@ -72,10 +72,10 @@ def backtracking(instrumental, graph_details, current_graph_details, problem_set
         if blocked[end_node] == False and blocked[start_node] == False and start_node != end_node: # Check whether the start and end nodes are identical or conditioned on
             if find_cycle(current_edges) == False: # Check for cycles
                 if limit_solutions == False or check(are_independent, instrumental.Z, instrumental.Y, n, start_node, end_node, blocked, current_edges) == False: # Verify whether the output must only contain the cases for which there is a different outcome in the independence test by adding the Z-Y edge. If limit_solutions is set to False instead, print all of the possible cases
-                    for i in range(len(graph_details.d_separation)): # Print the nodes that are part of the d-separation
+                    for i in range(len(graph_details.d_separation)): # Print the nodes that are conditioned on
                         if current_graph_details.current_d_separation[i] == 1:
                             printing(graph_details.map_to_character, graph_details.d_separation[i], n, fout)
-                    fout.write("||| ") # Separate the d-separation from the graph edges in the output file by '|||'
+                    fout.write("||| ") # Separate the set Z from the graph edges in the output file by '|||'
                     for i in range(n): # Print the edges
                         for j in current_edges[i].neighbors:
                             fout.write(graph_details.map_to_character[i] + "-" + graph_details.map_to_character[j] + " ")
@@ -87,7 +87,7 @@ def backtracking(instrumental, graph_details, current_graph_details, problem_set
                 for i in range(len(graph_details.d_separation)): # Print the nodes that are part of the d-separation
                     if current_graph_details.current_d_separation[i] == 1:
                         printing(graph_details.map_to_character, graph_details.d_separation[i], n, fout)
-                fout.write("||| ") # Separate the graph print with the d_separation nodes by '|||'
+                fout.write("||| ") # Separate the set Z from the graph edges in the output file by '|||'
                 for i in range(n): # Print the edges
                     for j in current_edges[i].neighbors:
                         fout.write(graph_details.map_to_character[i] + "-" + graph_details.map_to_character[j] + " ")
@@ -119,23 +119,23 @@ def changing_current_types(graph_details, current_graph_details, n, fout): # Fir
         flagToStop = changing_current_d_sep(graph_details, current_graph_details, n, fout)
     return flagToStop
 
-# Method to change the values for the d-separation nodes
-def changing_current_d_sep(graph_details, current_graph_details, n, fout): # We must iterate through all of the possible d-separations
-    index = len(current_graph_details.current_d_separation) - 1 # Try to include the last node in the d-separation initially
-    flagToStop = False # Flag variable which signals when the whole array of nodes which can be part of the d-separation, has been traversed
+# Method to change the nodes which are conditioned on
+def changing_current_d_sep(graph_details, current_graph_details, n, fout): # We must iterate through all of the nodes that can be conditioned on
+    index = len(current_graph_details.current_d_separation) - 1 # Try to include the last node in set Z initially
+    flagToStop = False # Flag variable which signals when the whole array of nodes has been traversed
     flagFound = False # Flag variable, with the purpose of detecting the first node which can be included in the d-separation
     while flagToStop == False and flagFound == False: # Iterate through the nodes, as long as no new node which can be included in the d-separation has been found
         if index < 0: # An index smaller than zero means that all of the nodes have been iterated through
             flagToStop = True # The flag must be changed
         else:
             current_graph_details.current_d_separation[index] += 1
-            if current_graph_details.current_d_separation[index] > 1: # Check whether the current node has already been included in the current d-separation
+            if current_graph_details.current_d_separation[index] > 1: # Check whether the current node has already been conditioned on
                 current_graph_details.current_d_separation[index] = 0 # If it has been included, remove it from the current d-separation
                 index -= 1 # Decrease the index, moving on to the next node
             else:
                 flagFound = True # The node has been found and included in the current d-separation
     if flagToStop == True: # If all of the possible d-separations have been considered, move on to the next pair of start and end nodes. If not, go back to the backtracking function
-        current_graph_details.current_d_separation = np.zeros(len(current_graph_details.current_d_separation)) # Remove all of the nodes from the current d-separation
+        current_graph_details.current_d_separation = np.zeros(len(current_graph_details.current_d_separation)) # The list of nodes that have been conditioned on becomes empty
         flagToStop = changing_current_start_and_end(graph_details, current_graph_details, n, fout)
     return flagToStop
 

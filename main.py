@@ -29,13 +29,13 @@ fout = open("output.txt", "w")
 # Read the present nodes and the different types of edges
 (n, edges, d1, revD1) = read_graph(fin)
 
-# Read the possible nodes that can be part of the d-separation, as well as the start and end nodes considered for the independence test
+# Read the possible nodes that can be part of the d-separation
 (d_separation, sn, en) = read_d_separation_and_start_end(fin, n, d1)
 
 # Store the graph information
 graph_details = GraphDetails(n, edges, d1, revD1, d_separation, sn, en)
 
-# Initialize the necessary counters for backtracking in order to iterate over all the possible graphs, d-separations, start and end nodes
+# Initialize the necessary counters for backtracking in order to iterate over all the possible graphs and d-separations
 current_graph_details = CurrentGraphDetails(np.zeros(len(edges)), np.zeros(len(d_separation)), 0, 0)
 
 # Read the info regarding the instrument: the desired instrument, the explanatory variable and the dependent variable
@@ -52,5 +52,5 @@ limit_solutions = False
 # Set a very high limit for the recursion limit
 sys.setrecursionlimit(10000000)
 
-# Start the iteration through all the possible graphs, d-separations, start and end nodes
+# Start the iteration through all the possible graphs and d-separations
 backtracking(instrumental, graph_details, current_graph_details, problem_setting, fout, limit_solutions, 1)
